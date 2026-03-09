@@ -1,0 +1,64 @@
+/* ===== Word Search ===== */
+.ws-board {
+    display: grid;
+    gap: 4px;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+}
+.ws-cell {
+    aspect-ratio: 1;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: transform 0.1s, background 0.15s, border-color 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.ws-cell:hover { border-color: var(--primary); }
+.ws-cell:active { transform: scale(0.92); }
+.ws-cell.ws-selected {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+    color: var(--primary-light);
+}
+.ws-cell.ws-found {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--success);
+    color: var(--success-light);
+}
+.ws-word-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px 0;
+}
+.ws-word-item {
+    padding: 6px 14px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.ws-word-item.ws-word-found {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--success);
+    color: var(--success-light);
+    text-decoration: line-through;
+}
+.ws-controls { display: flex; justify-content: center; gap: 10px; }
+@media (max-width: 480px) {
+    .ws-board { max-width: 300px; }
+    .ws-cell { min-height: 34px; font-size: 0.95rem; }
+}

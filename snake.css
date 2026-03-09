@@ -1,0 +1,79 @@
+/* ===== Snake Game ===== */
+.snake-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.snake-canvas-wrap {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.snake-canvas-wrap canvas {
+    border-radius: var(--radius);
+    display: block;
+    max-width: 100%;
+    height: auto;
+    touch-action: none;
+}
+
+.snake-controls-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* D-pad for mobile */
+.snake-dpad {
+    display: none;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(3, 56px);
+    gap: 4px;
+    justify-content: center;
+}
+
+.snake-dpad-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.snake-dpad-btn:active {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+}
+
+.snake-dpad-empty {
+    visibility: hidden;
+}
+
+@media (max-width: 768px) {
+    .snake-dpad { display: grid; }
+}
+
+@media (max-width: 480px) {
+    .snake-canvas-wrap { padding: 10px; }
+    .snake-dpad-btn { font-size: 1.1rem; }
+    .snake-dpad {
+        grid-template-columns: repeat(3, 48px);
+        grid-template-rows: repeat(3, 48px);
+    }
+}

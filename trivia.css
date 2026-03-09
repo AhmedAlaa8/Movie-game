@@ -1,0 +1,102 @@
+/* ===== Trivia Quiz ===== */
+.triv-progress {
+    height: 6px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.triv-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+    width: 10%;
+}
+
+.triv-question-card {
+    padding: 32px 24px;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.triv-question-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.triv-answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.triv-answer-btn {
+    padding: 18px 20px;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.triv-answer-btn:hover:not(.answered) {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.triv-answer-btn.correct-answer {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success-light);
+}
+
+.triv-answer-btn.wrong-answer {
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger-light);
+    animation: shake 0.5s ease;
+}
+
+.triv-answer-btn.answered {
+    pointer-events: none;
+}
+
+.triv-next {
+    margin: 0 auto;
+    display: none;
+}
+
+.triv-next[style*="flex"] {
+    display: inline-flex;
+}
+
+@media (max-width: 768px) {
+    .triv-answers { max-width: 100%; }
+    .triv-question-card { padding: 24px 16px; }
+}
+
+@media (max-width: 480px) {
+    .triv-answers { grid-template-columns: 1fr; }
+    .triv-question-text { font-size: 1.1rem; }
+    .triv-answer-btn { padding: 14px 16px; font-size: 0.95rem; }
+}

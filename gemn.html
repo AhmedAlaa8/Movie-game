@@ -1,99 +1,866 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="gemncss.css">
+    <link rel="stylesheet" href="hangman.css">
+    <link rel="stylesheet" href="tictactoe.css">
+    <link rel="stylesheet" href="memory.css">
+    <link rel="stylesheet" href="trivia.css">
+    <link rel="stylesheet" href="snake.css">
+    <link rel="stylesheet" href="wordle.css">
+    <link rel="stylesheet" href="game2048.css">
+    <link rel="stylesheet" href="minesweeper.css">
+    <link rel="stylesheet" href="simon.css">
+    <link rel="stylesheet" href="flappy.css">
+    <link rel="stylesheet" href="typingspeed.css">
+    <link rel="stylesheet" href="rps.css">
+    <link rel="stylesheet" href="puzzle.css">
+    <link rel="stylesheet" href="colormatch.css">
+    <link rel="stylesheet" href="reaction.css">
+    <link rel="stylesheet" href="breakout.css">
+    <link rel="stylesheet" href="whackmole.css">
+    <link rel="stylesheet" href="mathgame.css">
+    <link rel="stylesheet" href="dodge.css">
+    <link rel="stylesheet" href="spotdiff.css">
+    <link rel="stylesheet" href="wordsearch.css">
+    <link rel="stylesheet" href="balloon.css">
+    <link rel="stylesheet" href="towerstack.css">
+    <link rel="stylesheet" href="catchfruit.css">
     <link rel="stylesheet" href="all.min.css">
-
-    <title>Document</title>
+    <title>Mini Games - ألعاب مصغرة</title>
 </head>
 
 <body>
-    <div class="con">
+    <!-- Splash Loading Screen -->
+    <div class="splash-screen">
+        <span class="splash-icon">🎮</span>
+        <span class="splash-text">Ahmed Alaa</span>
+        <div class="splash-bar"></div>
+    </div>
 
-        <div class="title">
-            <div class="righttitle">Word From</div>
-            <div class="wrong">Wrong <span class="spann1">-</span> <span class="spann">-</span> </div>
-            <div class="lefttitle">Hang Man</div>
+    <!-- Animated Background Particles -->
+    <div class="bg-particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+    </div>
+    <div class="game-container">
+
+        <!-- ========== MAIN MENU ========== -->
+        <div id="mainMenu" class="screen active">
+            <!-- Hero / Branding -->
+            <div class="brand-hero">
+                <div class="brand-avatar-wrap">
+                    <div class="brand-avatar">A</div>
+                </div>
+                <h2 class="brand-name">Ahmed Alaa</h2>
+                <p class="brand-tagline" data-i18n="brandTagline">عالم الألعاب المصغرة</p>
+                <div class="brand-hero-line"></div>
+                <div class="brand-games-count">
+                    <span>🎮</span>
+                    <span class="count-num">24</span>
+                    <span data-i18n="brandGamesCount">لعبة متاحة</span>
+                </div>
+            </div>
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🎮</span>
+                    <span data-i18n="menuTitle">ألعاب مصغرة</span>
+                </h1>
+                <div class="header-controls">
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                </div>
+            </header>
+            <div class="menu-search">
+                <input type="text" class="menu-search-input" id="menuSearchInput"
+                    data-i18n-placeholder="menuSearchPlaceholder" placeholder="ابحث عن لعبة..." autocomplete="off">
+                <i class="fa-solid fa-magnifying-glass menu-search-icon"></i>
+                <button class="menu-search-clear" id="menuSearchClear" type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="menu-no-results" id="menuNoResults">
+                <span class="no-results-icon">🔍</span>
+                <span data-i18n="menuNoResults">لا توجد نتائج</span>
+            </div>
+            <div class="menu-section-label">
+                <span data-i18n="menuChooseGame">اختر لعبتك</span>
+            </div>
+            <div class="menu-grid">
+                <button class="menu-card" data-game="hangman">
+                    <span class="menu-card-icon">🎬</span>
+                    <span class="menu-card-title" data-i18n="menuHangman">لعبة المشنقة</span>
+                    <span class="menu-card-desc" data-i18n="menuHangmanDesc">خمن حروف اسم الفلم</span>
+                </button>
+                <button class="menu-card" data-game="tictactoe">
+                    <span class="menu-card-icon">❌⭕</span>
+                    <span class="menu-card-title" data-i18n="menuTicTacToe">إكس أو</span>
+                    <span class="menu-card-desc" data-i18n="menuTicTacToeDesc">لعبة لاعبين</span>
+                </button>
+                <button class="menu-card" data-game="memory">
+                    <span class="menu-card-icon">🃏</span>
+                    <span class="menu-card-title" data-i18n="menuMemory">لعبة الذاكرة</span>
+                    <span class="menu-card-desc" data-i18n="menuMemoryDesc">أوجد الأزواج المتشابهة</span>
+                </button>
+                <button class="menu-card" data-game="trivia">
+                    <span class="menu-card-icon">🧠</span>
+                    <span class="menu-card-title" data-i18n="menuTrivia">اختبر معلوماتك</span>
+                    <span class="menu-card-desc" data-i18n="menuTriviaDesc">أسئلة وأجوبة</span>
+                </button>
+                <button class="menu-card" data-game="snake">
+                    <span class="menu-card-icon">🐍</span>
+                    <span class="menu-card-title" data-i18n="menuSnake">لعبة الثعبان</span>
+                    <span class="menu-card-desc" data-i18n="menuSnakeDesc">كل واكبر</span>
+                </button>
+                <button class="menu-card" data-game="wordle">
+                    <span class="menu-card-icon">🔤</span>
+                    <span class="menu-card-title" data-i18n="menuWordle">خمن الكلمة</span>
+                    <span class="menu-card-desc" data-i18n="menuWordleDesc">خمن الكلمة في 6 محاولات</span>
+                </button>
+                <button class="menu-card" data-game="game2048">
+                    <span class="menu-card-icon">🔢</span>
+                    <span class="menu-card-title" data-i18n="menu2048">2048</span>
+                    <span class="menu-card-desc" data-i18n="menu2048Desc">ادمج الأرقام</span>
+                </button>
+                <button class="menu-card" data-game="minesweeper">
+                    <span class="menu-card-icon">💣</span>
+                    <span class="menu-card-title" data-i18n="menuMine">كاسحة الألغام</span>
+                    <span class="menu-card-desc" data-i18n="menuMineDesc">تجنب الألغام</span>
+                </button>
+                <button class="menu-card" data-game="simon">
+                    <span class="menu-card-icon">🎵</span>
+                    <span class="menu-card-title" data-i18n="menuSimon">سيمون</span>
+                    <span class="menu-card-desc" data-i18n="menuSimonDesc">تذكر التسلسل</span>
+                </button>
+                <button class="menu-card" data-game="flappy">
+                    <span class="menu-card-icon">🐦</span>
+                    <span class="menu-card-title" data-i18n="menuFlappy">الطائر</span>
+                    <span class="menu-card-desc" data-i18n="menuFlappyDesc">اطير بين العوائق</span>
+                </button>
+                <button class="menu-card" data-game="typingspeed">
+                    <span class="menu-card-icon">⌨️</span>
+                    <span class="menu-card-title" data-i18n="menuTyping">سرعة الكتابة</span>
+                    <span class="menu-card-desc" data-i18n="menuTypingDesc">اختبر سرعتك</span>
+                </button>
+                <button class="menu-card" data-game="rps">
+                    <span class="menu-card-icon">✊</span>
+                    <span class="menu-card-title" data-i18n="menuRPS">حجر ورقة مقص</span>
+                    <span class="menu-card-desc" data-i18n="menuRPSDesc">العب ضد الكمبيوتر</span>
+                </button>
+                <button class="menu-card" data-game="puzzle">
+                    <span class="menu-card-icon">🧩</span>
+                    <span class="menu-card-title" data-i18n="menuPuzzle">البازل</span>
+                    <span class="menu-card-desc" data-i18n="menuPuzzleDesc">رتب الأرقام</span>
+                </button>
+                <button class="menu-card" data-game="colormatch">
+                    <span class="menu-card-icon">🎨</span>
+                    <span class="menu-card-title" data-i18n="menuColor">تطابق الألوان</span>
+                    <span class="menu-card-desc" data-i18n="menuColorDesc">اختر اللون الصحيح</span>
+                </button>
+                <button class="menu-card" data-game="reaction">
+                    <span class="menu-card-icon">⚡</span>
+                    <span class="menu-card-title" data-i18n="menuReaction">سرعة الردة</span>
+                    <span class="menu-card-desc" data-i18n="menuReactionDesc">اختبر سرعة ردة فعلك</span>
+                </button>
+                <button class="menu-card" data-game="breakout">
+                    <span class="menu-card-icon">🧱</span>
+                    <span class="menu-card-title" data-i18n="menuBreakout">كسر الطوب</span>
+                    <span class="menu-card-desc" data-i18n="menuBreakoutDesc">كسر الطوب بالكرة</span>
+                </button>
+                <button class="menu-card" data-game="whackmole">
+                    <span class="menu-card-icon">🐹</span>
+                    <span class="menu-card-title" data-i18n="menuWhack">اضرب الخلد</span>
+                    <span class="menu-card-desc" data-i18n="menuWhackDesc">اضرب قبل ما يختفي</span>
+                </button>
+                <button class="menu-card" data-game="mathgame">
+                    <span class="menu-card-icon">🔢</span>
+                    <span class="menu-card-title" data-i18n="menuMath">تحدي الرياضيات</span>
+                    <span class="menu-card-desc" data-i18n="menuMathDesc">حل المسائل بسرعة</span>
+                </button>
+                <button class="menu-card" data-game="dodge">
+                    <span class="menu-card-icon">💥</span>
+                    <span class="menu-card-title" data-i18n="menuDodge">تفادي السقوط</span>
+                    <span class="menu-card-desc" data-i18n="menuDodgeDesc">اجمع العملات وتفادى</span>
+                </button>
+                <button class="menu-card" data-game="spotdiff">
+                    <span class="menu-card-icon">🔍</span>
+                    <span class="menu-card-title" data-i18n="menuSpot">اوجد الاختلاف</span>
+                    <span class="menu-card-desc" data-i18n="menuSpotDesc">اكتشف الرمز المختلف</span>
+                </button>
+                <button class="menu-card" data-game="wordsearch">
+                    <span class="menu-card-icon">🔠</span>
+                    <span class="menu-card-title" data-i18n="menuWS">البحث عن الكلمات</span>
+                    <span class="menu-card-desc" data-i18n="menuWSDesc">ابحث عن الكلمات المخفية</span>
+                </button>
+                <button class="menu-card" data-game="balloon">
+                    <span class="menu-card-icon">🎈</span>
+                    <span class="menu-card-title" data-i18n="menuBalloon">فرقع البالونات</span>
+                    <span class="menu-card-desc" data-i18n="menuBalloonDesc">فرقع أكبر عدد</span>
+                </button>
+                <button class="menu-card" data-game="towerstack">
+                    <span class="menu-card-icon">🏗️</span>
+                    <span class="menu-card-title" data-i18n="menuTower">بناء البرج</span>
+                    <span class="menu-card-desc" data-i18n="menuTowerDesc">ابني أعلى برج</span>
+                </button>
+                <button class="menu-card" data-game="catchfruit">
+                    <span class="menu-card-icon">🍎</span>
+                    <span class="menu-card-title" data-i18n="menuFruit">التقط الفواكه</span>
+                    <span class="menu-card-desc" data-i18n="menuFruitDesc">التقط وتجنب القنابل</span>
+                </button>
+            </div>
+            <footer class="brand-footer">
+                <span data-i18n="brandFooter">صنع بواسطة</span> <strong>Ahmed Alaa</strong>
+            </footer>
         </div>
-        <hr>
-        <div class="drow">
-            <div class="right">
-                <div class="row">
-                    <div class="dr">
-                        <div class="thehang">
-                            <div class="preg"></div>
-                            <div class="stand"></div>
-                            <!-- <div class="prego"></div> -->
-                            <div class="seattop"></div>
-                            <div class="colum"></div>
-                            <div class="seat"></div>
 
+        <!-- ========== HANGMAN GAME ========== -->
+        <div id="hangman" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🎬</span>
+                    <span data-i18n="hangmanTitle">لعبة المشنقة</span>
+                </h1>
+                <div class="header-controls">
+                    <div class="stat-badge wrong-badge">
+                        <span class="stat-label" data-i18n="hangmanErrors">أخطاء</span>
+                        <span class="wrong-count" id="hangmanWrongCount">0</span>
+                        <span class="stat-label">/ 4</span>
+                    </div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
+
+            <main class="game-board">
+                <section class="hangman-section">
+                    <div class="hangman-frame">
+                        <div class="gallows">
+                            <div class="gallows-base"></div>
+                            <div class="gallows-pole"></div>
+                            <div class="gallows-top"></div>
+                            <div class="gallows-support"></div>
+                            <div class="gallows-rope"></div>
                         </div>
-
-                        <div class="man">
-                            <div class="head"></div>
-                            <div class="body"></div>
-                            <div class="handr"></div>
-                            <div class="handl"></div>
-                            <div class="legr"></div>
-                            <div class="legl"></div>
+                        <div class="stickman">
+                            <div class="stickman-head"></div>
+                            <div class="stickman-body"></div>
+                            <div class="stickman-arm-right"></div>
+                            <div class="stickman-arm-left"></div>
+                            <div class="stickman-leg-right"></div>
+                            <div class="stickman-leg-left"></div>
                         </div>
                     </div>
+                </section>
+                <section class="letters-section">
+                    <div class="letters-grid" id="hangmanLettersGrid"></div>
+                </section>
+            </main>
+
+            <section class="word-section">
+                <div class="word-display" id="hangmanWordDisplay"></div>
+            </section>
+
+            <section class="input-section" id="hangmanInputSection">
+                <label class="input-label" data-i18n="hangmanInputLabel">ادخل اسم الفلم أو المسلسل</label>
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input class="game-input" id="hangmanInput" required
+                            data-i18n-placeholder="hangmanPlaceholder"
+                            placeholder="اكتب اسم الفلم هنا..." type="password" autocomplete="off">
+                        <button class="toggle-password" id="hangmanTogglePassword" type="button">
+                            <i class="fa-regular fa-eye" id="hangmanEyeIcon"></i>
+                        </button>
+                    </div>
+                    <button class="btn-submit" id="hangmanSubmit">
+                        <span data-i18n="hangmanSubmitBtn">ابدأ اللعب</span>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+                <p class="input-error" id="hangmanError" data-i18n="hangmanInputError">الرجاء إدخال اسم الفلم</p>
+            </section>
+        </div>
+
+        <!-- ========== TIC-TAC-TOE GAME ========== -->
+        <div id="tictactoe" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">❌⭕</span>
+                    <span data-i18n="tttTitle">إكس أو</span>
+                </h1>
+                <div class="header-controls">
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="ttt-status-bar">
+                <div class="ttt-player ttt-player-x active-turn" id="tttPlayerX">
+                    <span class="ttt-symbol">X</span>
+                    <span data-i18n="tttPlayer1">لاعب 1</span>
+                    <span class="ttt-score" id="tttScoreX">0</span>
+                </div>
+                <div class="ttt-turn-indicator" id="tttTurnIndicator">
+                    <span data-i18n="tttTurn">الدور</span>:
+                    <span id="tttCurrentTurn">X</span>
+                </div>
+                <div class="ttt-player ttt-player-o" id="tttPlayerO">
+                    <span class="ttt-symbol">O</span>
+                    <span data-i18n="tttPlayer2">لاعب 2</span>
+                    <span class="ttt-score" id="tttScoreO">0</span>
                 </div>
             </div>
 
+            <div class="ttt-board" id="tttBoard"></div>
 
-            <div class="left">
-                <div class="letter"></div>
+            <button class="btn-play-again" id="tttResetBtn">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span data-i18n="tttNewRound">جولة جديدة</span>
+            </button>
+        </div>
+
+        <!-- ========== MEMORY MATCH GAME ========== -->
+        <div id="memory" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🃏</span>
+                    <span data-i18n="memTitle">لعبة الذاكرة</span>
+                </h1>
+                <div class="header-controls">
+                    <div class="stat-badge">
+                        <span data-i18n="memMoves">المحاولات</span>:
+                        <span id="memMoveCount">0</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span data-i18n="memPairs">الأزواج</span>:
+                        <span id="memPairCount">0</span>/8
+                    </div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="mem-board" id="memBoard"></div>
+        </div>
+
+        <!-- ========== TRIVIA QUIZ GAME ========== -->
+        <div id="trivia" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🧠</span>
+                    <span data-i18n="trivTitle">اختبر معلوماتك</span>
+                </h1>
+                <div class="header-controls">
+                    <div class="stat-badge">
+                        <span data-i18n="trivScore">النتيجة</span>:
+                        <span id="trivScore">0</span>/10
+                    </div>
+                    <div class="stat-badge">
+                        <span data-i18n="trivQuestion">السؤال</span>:
+                        <span id="trivCurrent">1</span>/10
+                    </div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="triv-progress">
+                <div class="triv-progress-bar" id="trivProgressBar"></div>
+            </div>
+
+            <div class="triv-question-card">
+                <p class="triv-question-text" id="trivQuestionText"></p>
+            </div>
+
+            <div class="triv-answers" id="trivAnswers"></div>
+
+            <button class="btn-submit triv-next" id="trivNextBtn" style="display:none;">
+                <span data-i18n="trivNext">السؤال التالي</span>
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+
+        <!-- ========== SNAKE GAME ========== -->
+        <div id="snake" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🐍</span>
+                    <span data-i18n="snakeTitle">لعبة الثعبان</span>
+                </h1>
+                <div class="header-controls">
+                    <div class="stat-badge">
+                        <span data-i18n="snakeScore">النتيجة</span>:
+                        <span id="snakeScoreVal">0</span>
+                    </div>
+                    <div class="stat-badge">
+                        <span data-i18n="snakeBest">أفضل</span>:
+                        <span id="snakeBestScore">0</span>
+                    </div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="snake-wrapper">
+                <div class="snake-canvas-wrap">
+                    <canvas id="snakeCanvas"></canvas>
+                </div>
+                <p class="snake-controls-hint" data-i18n="snakeControls">استخدم الأسهم أو اسحب للتحريك</p>
+                <div class="snake-dpad">
+                    <div class="snake-dpad-empty"></div>
+                    <button class="snake-dpad-btn" id="snakeBtnUp"><i class="fa-solid fa-chevron-up"></i></button>
+                    <div class="snake-dpad-empty"></div>
+                    <button class="snake-dpad-btn" id="snakeBtnLeft"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="snake-dpad-empty"></div>
+                    <button class="snake-dpad-btn" id="snakeBtnRight"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="snake-dpad-empty"></div>
+                    <button class="snake-dpad-btn" id="snakeBtnDown"><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="snake-dpad-empty"></div>
+                </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <hr>
-        <label class="dess">ادخل اسم الفلم او المسلسل</label>
-        <div class="value">
-            <input class="inpu" required placeholder="ادخل اسم الفلم او المسلسل" type="password">
 
-            <div class="hiden">
-                <i class="fa-regular fa-eye "></i>
-            </div>
-            <div class="show">
-                <i class="fa-regular fa-eye-slash "></i>
-            </div>
+        <!-- ========== WORDLE GAME ========== -->
+        <div id="wordle" class="screen">
+            <header class="game-header">
+                <h1 class="game-title">
+                    <span class="title-icon">🔤</span>
+                    <span data-i18n="wordleTitle">خمن الكلمة</span>
+                </h1>
+                <div class="header-controls">
+                    <div class="stat-badge">
+                        <span data-i18n="wordleAttempts">المحاولات</span>:
+                        <span id="wordleAttempts">0</span>/6
+                    </div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()">
+                        <i class="fa-solid fa-house"></i>
+                        <span data-i18n="backToMenu">القائمة</span>
+                    </button>
+                </div>
+            </header>
 
-            <input type="button" class="send" value="Send">
-            <div class="letsend">
+            <div class="wordle-grid" id="wordleGrid"></div>
 
+            <div class="wordle-keyboard" id="wordleKeyboard"></div>
+        </div>
 
+        <!-- ========== 2048 GAME ========== -->
+        <div id="game2048" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🔢</span><span data-i18n="g2048Title">2048</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="g2048Score">النتيجة</span>: <span id="g2048Score">0</span></div>
+                    <div class="stat-badge"><span data-i18n="g2048Best">أفضل</span>: <span id="g2048Best">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <p style="text-align:center;color:var(--text-muted);font-size:0.85rem" data-i18n="g2048Controls">استخدم الأسهم أو اسحب</p>
+            <div class="g2048-board" id="g2048Board"></div>
+        </div>
 
+        <!-- ========== MINESWEEPER GAME ========== -->
+        <div id="minesweeper" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">💣</span><span data-i18n="mineTitle">كاسحة الألغام</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="mineMines">ألغام</span>: 10</div>
+                    <div class="stat-badge"><span data-i18n="mineFlags">أعلام</span>: <span id="mineFlagCount">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <button class="mine-flag-toggle" id="mineFlagToggle" onclick="MinesweeperGame.state.flagMode=!MinesweeperGame.state.flagMode;this.classList.toggle('active')">
+                🚩 <span data-i18n="mineFlagMode">وضع العلم</span>
+            </button>
+            <div class="mine-board" id="mineBoard"></div>
+        </div>
+
+        <!-- ========== SIMON SAYS GAME ========== -->
+        <div id="simon" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🎵</span><span data-i18n="simonTitle">سيمون</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="simonRound">الجولة</span>: <span id="simonRound">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="simon-wrapper">
+                <p class="simon-status" id="simonStatus"></p>
+                <div class="simon-board">
+                    <button class="simon-btn simon-red" id="simon-red"></button>
+                    <button class="simon-btn simon-blue" id="simon-blue"></button>
+                    <button class="simon-btn simon-green" id="simon-green"></button>
+                    <button class="simon-btn simon-yellow" id="simon-yellow"></button>
+                </div>
+                <button class="simon-start-btn" id="simonStartBtn" data-i18n="simonStart">ابدأ</button>
             </div>
         </div>
-        <div class="finshgame"></div>
-        <div class="finshgamex"></div>
 
-        <audio class="audioo">
-            <source src="./mixkit-horror-lose-2028.wav" type="audio/mpeg">
-        </audio>
-        <audio class="audiotwo">
-            <source src="./yay-6120.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audioletter">
-            <source src="./short-success-sound-glockenspiel-treasure-video-game-6346.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audioletterw">
-            <source src="./failure-drum-sound-effect-1-46093.mp3" type="audio/mpeg">
-        </audio>
+        <!-- ========== FLAPPY BIRD GAME ========== -->
+        <div id="flappy" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🐦</span><span data-i18n="flappyTitle">الطائر</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="flappyScore">النتيجة</span>: <span id="flappyScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="flappyBest">أفضل</span>: <span id="flappyBest">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="flappy-wrapper">
+                <div class="flappy-canvas-wrap"><canvas id="flappyCanvas"></canvas></div>
+            </div>
+        </div>
 
+        <!-- ========== TYPING SPEED GAME ========== -->
+        <div id="typingspeed" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">⌨️</span><span data-i18n="typeTitle">سرعة الكتابة</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="typeWPM">كلمة/دقيقة</span>: <span id="typeWPM">0</span></div>
+                    <div class="stat-badge"><span data-i18n="typeTime">الوقت</span>: <span id="typeTimeLeft">30</span>s</div>
+                    <button class="lang-toggle" type="button">
+                        <span class="lang-option" data-lang="ar">عربي</span>
+                        <span class="lang-divider">/</span>
+                        <span class="lang-option" data-lang="en">EN</span>
+                    </button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="type-words-box" id="typeWords"></div>
+            <div class="type-input-wrap">
+                <input class="type-input" id="typeInput" data-i18n-placeholder="typePlaceholder" placeholder="ابدأ الكتابة هنا..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+        </div>
 
+        <!-- ========== ROCK PAPER SCISSORS GAME ========== -->
+        <div id="rps" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">✊</span><span data-i18n="rpsTitle">حجر ورقة مقص</span></h1>
+                <div class="header-controls">
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="rps-arena">
+                <div class="rps-player">
+                    <span class="rps-player-label" data-i18n="rpsYou">أنت</span>
+                    <span class="rps-choice" id="rpsPlayerChoice">❓</span>
+                </div>
+                <span class="rps-vs">VS</span>
+                <div class="rps-player">
+                    <span class="rps-player-label" data-i18n="rpsCPU">الكمبيوتر</span>
+                    <span class="rps-choice" id="rpsCPUChoice">❓</span>
+                </div>
+            </div>
+            <div class="rps-result" id="rpsResult"></div>
+            <div class="rps-buttons">
+                <button class="rps-btn" id="rpsRock"><span class="rps-btn-icon">🪨</span><span data-i18n="rpsRock">حجر</span></button>
+                <button class="rps-btn" id="rpsPaper"><span class="rps-btn-icon">📄</span><span data-i18n="rpsPaper">ورقة</span></button>
+                <button class="rps-btn" id="rpsScissors"><span class="rps-btn-icon">✂️</span><span data-i18n="rpsScissors">مقص</span></button>
+            </div>
+            <div class="rps-scores">
+                <div class="rps-score-item" style="color:var(--success-light)">W: <span id="rpsWins">0</span></div>
+                <div class="rps-score-item" style="color:var(--danger-light)">L: <span id="rpsLosses">0</span></div>
+                <div class="rps-score-item">D: <span id="rpsDraws">0</span></div>
+            </div>
+        </div>
 
+        <!-- ========== PUZZLE SLIDER GAME ========== -->
+        <div id="puzzle" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🧩</span><span data-i18n="puzzleTitle">البازل</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="puzzleMoves">الخطوات</span>: <span id="puzzleMoveCount">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="puzzle-board" id="puzzleBoard"></div>
+            <button class="btn-play-again" id="puzzleShuffleBtn"><i class="fa-solid fa-shuffle"></i><span data-i18n="puzzleShuffle">خلط</span></button>
+        </div>
+
+        <!-- ========== COLOR MATCH GAME ========== -->
+        <div id="colormatch" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🎨</span><span data-i18n="colorTitle">تطابق الألوان</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="colorScore">النتيجة</span>: <span id="colorScoreVal">0</span></div>
+                    <div class="stat-badge"><span data-i18n="colorTime">الوقت</span>: <span id="colorTimeLeft">20</span>s</div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="color-display-card">
+                <p class="color-question" data-i18n="colorQuestion">ما هو لون النص؟</p>
+                <div class="color-display" id="colorDisplay"></div>
+            </div>
+            <div class="color-choices" id="colorChoices"></div>
+        </div>
+
+        <!-- ========== REACTION TIME GAME ========== -->
+        <div id="reaction" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">⚡</span><span data-i18n="reactTitle">سرعة الردة</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="reactBest">أفضل</span>: <span id="reactBest">-</span>ms</div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="react-zone" id="reactZone">
+                <p class="react-msg" id="reactMsg" data-i18n="reactWait">انتظر اللون الأخضر...</p>
+                <p class="react-time" id="reactTime"></p>
+            </div>
+            <div class="react-results" id="reactResults"></div>
+        </div>
+
+        <!-- ========== BREAKOUT GAME ========== -->
+        <div id="breakout" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🧱</span><span data-i18n="breakTitle">كسر الطوب</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="breakLevel">المرحلة</span>: <span id="breakLevel">1</span></div>
+                    <div class="stat-badge"><span data-i18n="breakScore">النتيجة</span>: <span id="breakScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="breakLives">الأرواح</span>: <span id="breakLives">3</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="breakout-wrapper">
+                <div class="breakout-canvas-wrap"><canvas id="breakoutCanvas"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ========== WHACK-A-MOLE GAME ========== -->
+        <div id="whackmole" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🐹</span><span data-i18n="whackTitle">اضرب الخلد</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="whackScore">النتيجة</span>: <span id="whackScoreVal">0</span></div>
+                    <div class="stat-badge"><span data-i18n="whackTime">الوقت</span>: <span id="whackTimeLeft">30</span>s</div>
+                    <div class="stat-badge"><span data-i18n="whackCombo">كومبو</span>: <span id="whackCombo">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="whack-board" id="whackBoard"></div>
+            <button class="whack-start-btn" id="whackStartBtn"><i class="fa-solid fa-play"></i><span data-i18n="whackStart">ابدأ!</span></button>
+        </div>
+
+        <!-- ========== MATH CHALLENGE GAME ========== -->
+        <div id="mathgame" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🔢</span><span data-i18n="mathTitle">تحدي الرياضيات</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="mathScore">النتيجة</span>: <span id="mathScoreVal">0</span></div>
+                    <div class="stat-badge"><span data-i18n="mathStreak">متتالية</span>: <span id="mathStreak">0</span></div>
+                    <div class="stat-badge"><span data-i18n="mathTime">الوقت</span>: <span id="mathTimeLeft">60</span>s</div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="math-question-card">
+                <p class="math-question" id="mathQuestion">? = 5 + 3</p>
+            </div>
+            <div class="math-input-row">
+                <input class="math-input" id="mathInput" type="number" inputmode="numeric" data-i18n-placeholder="mathPlaceholder" placeholder="الجواب..." autocomplete="off">
+                <button class="math-submit-btn" id="mathSubmitBtn"><i class="fa-solid fa-check"></i></button>
+            </div>
+            <div class="math-feedback" id="mathFeedback"></div>
+        </div>
+
+        <!-- ========== DODGE GAME ========== -->
+        <div id="dodge" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">💥</span><span data-i18n="dodgeTitle">تفادي السقوط</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="dodgeScore">النتيجة</span>: <span id="dodgeScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="dodgeBest">أفضل</span>: <span id="dodgeBest">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="dodge-wrapper">
+                <div class="dodge-canvas-wrap"><canvas id="dodgeCanvas"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ========== SPOT THE DIFFERENCE GAME ========== -->
+        <div id="spotdiff" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🔍</span><span data-i18n="spotTitle">اوجد الاختلاف</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="spotFound">وجدت</span>: <span id="spotFound">0</span></div>
+                    <div class="stat-badge"><span data-i18n="spotRound">الجولة</span>: <span id="spotRound">1</span></div>
+                    <div class="stat-badge"><span data-i18n="spotTime">الوقت</span>: <span id="spotTime">0</span>s</div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <p class="spot-hint" data-i18n="spotHint">اضغط على الرمز المختلف</p>
+            <div class="spot-grid" id="spotGrid"></div>
+        </div>
+
+        <!-- ========== WORD SEARCH GAME ========== -->
+        <div id="wordsearch" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🔠</span><span data-i18n="wsTitle">البحث عن الكلمات</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="wsFound">وجدت</span>: <span id="wsFound">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="ws-word-list" id="wsWordList"></div>
+            <div class="ws-board" id="wsBoard"></div>
+            <div class="ws-controls">
+                <button class="btn-play-again" id="wsClearBtn"><i class="fa-solid fa-eraser"></i><span data-i18n="wsClear">مسح</span></button>
+            </div>
+        </div>
+
+        <!-- ========== BALLOON POP GAME ========== -->
+        <div id="balloon" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🎈</span><span data-i18n="balloonTitle">فرقع البالونات</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="balloonScore">النتيجة</span>: <span id="balloonScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="balloonTime">الوقت</span>: <span id="balloonTime">30</span>s</div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="balloon-wrapper">
+                <div class="balloon-canvas-wrap"><canvas id="balloonCanvas"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ========== TOWER STACK GAME ========== -->
+        <div id="towerstack" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🏗️</span><span data-i18n="towerTitle">بناء البرج</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="towerScore">الطوابق</span>: <span id="towerScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="towerBest">أفضل</span>: <span id="towerBest">0</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="tower-wrapper">
+                <div class="tower-canvas-wrap"><canvas id="towerCanvas"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ========== CATCH FRUIT GAME ========== -->
+        <div id="catchfruit" class="screen">
+            <header class="game-header">
+                <h1 class="game-title"><span class="title-icon">🍎</span><span data-i18n="fruitTitle">التقط الفواكه</span></h1>
+                <div class="header-controls">
+                    <div class="stat-badge"><span data-i18n="fruitScore">النتيجة</span>: <span id="fruitScore">0</span></div>
+                    <div class="stat-badge"><span data-i18n="fruitLives">الأرواح</span>: <span id="fruitLives">5</span></div>
+                    <button class="lang-toggle" type="button"><span class="lang-option" data-lang="ar">عربي</span><span class="lang-divider">/</span><span class="lang-option" data-lang="en">EN</span></button>
+                    <button class="btn-back" onclick="Navigation.goHome()"><i class="fa-solid fa-house"></i><span data-i18n="backToMenu">القائمة</span></button>
+                </div>
+            </header>
+            <div class="fruit-wrapper">
+                <div class="fruit-canvas-wrap"><canvas id="fruitCanvas"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ========== SHARED MODAL ========== -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal" id="gameModal">
+                <div class="modal-icon" id="modalIcon"></div>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-message" id="modalMessage"></p>
+                <button class="btn-play-again" id="modalBtn">العب مرة أخرى</button>
+            </div>
+        </div>
+
+        <!-- ========== AUDIO ========== -->
+        <audio id="audioLose" src="./mixkit-horror-lose-2028.wav" preload="auto"></audio>
+        <audio id="audioWin" src="./yay-6120.mp3" preload="auto"></audio>
+        <audio id="audioCorrect" src="./short-success-sound-glockenspiel-treasure-video-game-6346.mp3" preload="auto"></audio>
+        <audio id="audioWrong" src="./failure-drum-sound-effect-1-46093.mp3" preload="auto"></audio>
     </div>
-    <script src="gemnjs.js"></script>
+
+    <!-- Scripts in dependency order -->
+    <script src="shared.js"></script>
+    <script src="navigation.js"></script>
+    <script src="hangman.js"></script>
+    <script src="tictactoe.js"></script>
+    <script src="memory.js"></script>
+    <script src="trivia.js"></script>
+    <script src="snake.js"></script>
+    <script src="wordle.js"></script>
+    <script src="game2048.js"></script>
+    <script src="minesweeper.js"></script>
+    <script src="simon.js"></script>
+    <script src="flappy.js"></script>
+    <script src="typingspeed.js"></script>
+    <script src="rps.js"></script>
+    <script src="puzzle.js"></script>
+    <script src="colormatch.js"></script>
+    <script src="reaction.js"></script>
+    <script src="breakout.js"></script>
+    <script src="whackmole.js"></script>
+    <script src="mathgame.js"></script>
+    <script src="dodge.js"></script>
+    <script src="spotdiff.js"></script>
+    <script src="wordsearch.js"></script>
+    <script src="balloon.js"></script>
+    <script src="towerstack.js"></script>
+    <script src="catchfruit.js"></script>
+    <script src="effects.js"></script>
     <script src="all.min.js"></script>
 </body>
 

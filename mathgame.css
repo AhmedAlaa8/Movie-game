@@ -1,0 +1,66 @@
+/* ===== Math Challenge ===== */
+.math-question-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+.math-question {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    direction: ltr;
+}
+.math-input-row {
+    display: flex;
+    gap: 10px;
+    max-width: 320px;
+    margin: 0 auto;
+    align-items: center;
+}
+.math-input {
+    flex: 1;
+    padding: 14px 20px;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    transition: var(--transition);
+    direction: ltr;
+}
+.math-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+.math-input:disabled { opacity: 0.5; }
+.math-submit-btn {
+    padding: 14px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none;
+    border-radius: var(--radius);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.math-submit-btn:hover { filter: brightness(1.15); }
+.math-feedback {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+.math-correct { color: var(--success-light); }
+.math-wrong { color: var(--danger-light); }
+@media (max-width: 480px) {
+    .math-question { font-size: 2.2rem; }
+    .math-question-card { padding: 24px 16px; }
+    .math-input { font-size: 1.1rem; }
+}

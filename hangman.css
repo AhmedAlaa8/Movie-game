@@ -1,0 +1,196 @@
+/* ===== Hangman Game Board ===== */
+.game-board {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    flex: 1;
+}
+
+/* ===== Hangman Drawing ===== */
+.hangman-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.hangman-frame {
+    width: 200px;
+    height: 280px;
+    position: relative;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.gallows { position: absolute; inset: 0; }
+
+.gallows-base {
+    position: absolute; bottom: 20px; left: 80px;
+    width: 80px; height: 4px;
+    background: #cbd5e1; border-radius: 2px; display: none;
+}
+
+.gallows-pole {
+    position: absolute; bottom: 24px; left: 118px;
+    width: 4px; height: 200px;
+    background: #cbd5e1; border-radius: 2px; display: none;
+}
+
+.gallows-top {
+    position: absolute; top: 36px; left: 40px;
+    width: 82px; height: 4px;
+    background: #cbd5e1; border-radius: 2px; display: none;
+}
+
+.gallows-support {
+    position: absolute; top: 40px; left: 97px;
+    width: 4px; height: 32px;
+    background: #cbd5e1; border-radius: 2px;
+    transform: rotate(-45deg); transform-origin: top left; display: none;
+}
+
+.gallows-rope {
+    position: absolute; top: 40px; left: 41px;
+    width: 3px; height: 28px;
+    background: var(--accent); border-radius: 2px; display: none;
+}
+
+.stickman { position: absolute; inset: 0; display: none; }
+
+.stickman-head {
+    position: absolute; top: 68px; left: 28px;
+    width: 26px; height: 26px;
+    border: 3px solid var(--danger); border-radius: 50%;
+}
+
+.stickman-body {
+    position: absolute; top: 96px; left: 41px;
+    width: 3px; height: 50px;
+    background: var(--danger); border-radius: 2px;
+}
+
+.stickman-arm-right {
+    position: absolute; top: 104px; left: 44px;
+    width: 3px; height: 28px;
+    background: var(--danger); border-radius: 2px;
+    transform: rotate(35deg); transform-origin: top center;
+}
+
+.stickman-arm-left {
+    position: absolute; top: 104px; left: 39px;
+    width: 3px; height: 28px;
+    background: var(--danger); border-radius: 2px;
+    transform: rotate(-35deg); transform-origin: top center;
+}
+
+.stickman-leg-right {
+    position: absolute; top: 143px; left: 44px;
+    width: 3px; height: 30px;
+    background: var(--danger); border-radius: 2px;
+    transform: rotate(20deg); transform-origin: top center;
+}
+
+.stickman-leg-left {
+    position: absolute; top: 143px; left: 39px;
+    width: 3px; height: 30px;
+    background: var(--danger); border-radius: 2px;
+    transform: rotate(-20deg); transform-origin: top center;
+}
+
+/* ===== Letters Grid ===== */
+.letters-section { display: flex; align-items: flex-start; }
+
+.letters-grid {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; padding: 20px;
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    pointer-events: none; width: 100%;
+}
+
+.letter-btn {
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white; border: none; border-radius: var(--radius);
+    font-size: 1.1rem; font-weight: 700; cursor: pointer;
+    transition: var(--transition); position: relative; overflow: hidden;
+}
+
+.letter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.letter-btn.used {
+    background: rgba(100, 116, 139, 0.3);
+    color: var(--text-muted); pointer-events: none;
+    transform: scale(0.9); opacity: 0.5;
+}
+
+.letter-btn.correct {
+    background: linear-gradient(135deg, var(--success), var(--success-light));
+    pointer-events: none; opacity: 1;
+    animation: correctPulse 0.5s ease;
+}
+
+.letter-btn.wrong-letter {
+    background: linear-gradient(135deg, var(--danger), var(--danger-light));
+    pointer-events: none; opacity: 1;
+    animation: shake 0.5s ease;
+}
+
+.letters-grid.disabled { pointer-events: none; opacity: 0.5; }
+
+html[dir="ltr"] .letter-btn { text-transform: uppercase; }
+
+/* ===== Word Display ===== */
+.word-section { padding: 0; }
+
+.word-display {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center; padding: 24px;
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow);
+    min-height: 80px; align-items: center;
+}
+
+.word-display:empty { display: none; }
+
+.letter-slot {
+    width: 36px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 800;
+    color: var(--text-primary);
+    border-bottom: 3px solid var(--primary);
+    background: var(--bg-glass); border-radius: 6px 6px 0 0;
+    transition: var(--transition);
+}
+
+.letter-slot.revealed {
+    color: var(--accent); border-bottom-color: var(--accent);
+}
+
+.letter-slot.space { border-bottom: none; background: none; width: 20px; }
+
+/* ===== Hangman Responsive ===== */
+@media (max-width: 768px) {
+    .game-board { grid-template-columns: 1fr; gap: 16px; }
+    .hangman-section { order: -1; }
+    .hangman-frame { width: 160px; height: 230px; margin: 0 auto; }
+    .letter-btn { width: 40px; height: 40px; font-size: 0.95rem; }
+    .letters-grid { padding: 14px; gap: 4px; }
+    .letter-slot { width: 28px; height: 40px; font-size: 1.1rem; }
+    .word-display { padding: 16px; min-height: 60px; }
+}
+
+@media (max-width: 480px) {
+    .letter-btn { width: 34px; height: 34px; font-size: 0.85rem; border-radius: 8px; }
+    .letter-slot { width: 22px; height: 34px; font-size: 0.95rem; }
+    .hangman-frame { width: 140px; height: 200px; }
+}

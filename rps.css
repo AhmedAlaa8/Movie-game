@@ -1,0 +1,75 @@
+/* ===== Rock Paper Scissors ===== */
+.rps-arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+.rps-player { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.rps-player-label { font-weight: 700; color: var(--text-secondary); font-size: 0.9rem; }
+.rps-choice { font-size: 4rem; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+.rps-vs { font-size: 1.5rem; font-weight: 900; color: var(--text-muted); }
+.rps-result {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rps-result-win { color: var(--success-light); }
+.rps-result-lose { color: var(--danger-light); }
+.rps-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.rps-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 24px;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.rps-btn:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+.rps-btn-icon { font-size: 2.5rem; }
+.rps-scores {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+.rps-score-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+.rps-bounce { animation: wordlePop 0.3s ease; }
+@media (max-width: 480px) {
+    .rps-arena { gap: 16px; padding: 16px; }
+    .rps-choice { font-size: 3rem; }
+    .rps-btn { padding: 12px 18px; }
+    .rps-btn-icon { font-size: 2rem; }
+}

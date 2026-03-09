@@ -1,0 +1,13 @@
+/* ===== Tower Stack ===== */
+.tower-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.tower-canvas-wrap {
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    touch-action: none;
+}
+.tower-canvas-wrap canvas { display: block; max-width: 100%; height: auto; }

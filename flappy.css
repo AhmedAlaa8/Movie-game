@@ -1,0 +1,14 @@
+/* ===== Flappy Bird ===== */
+.flappy-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.flappy-canvas-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flappy-canvas-wrap canvas { border-radius: var(--radius); display: block; max-width: 100%; height: auto; touch-action: none; }
+@media (max-width: 480px) { .flappy-canvas-wrap { padding: 8px; } }

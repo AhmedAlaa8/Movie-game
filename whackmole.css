@@ -1,0 +1,97 @@
+/* ===== Whack-a-Mole ===== */
+.whack-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 360px;
+    width: 100%;
+    margin: 0 auto;
+}
+.whack-hole {
+    aspect-ratio: 1;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    min-height: 90px;
+}
+.whack-hole:active { transform: scale(0.95); }
+.whack-mole {
+    font-size: 2.5rem;
+    transform: translateY(100%) scale(0.5);
+    opacity: 0;
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
+.whack-hole.whack-active .whack-mole {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    animation: whackPop 0.15s ease-out;
+}
+@keyframes whackPop {
+    0% { transform: translateY(60%) scale(0.3); }
+    60% { transform: translateY(-10%) scale(1.1); }
+    100% { transform: translateY(0) scale(1); }
+}
+.whack-hole.whack-active {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+/* Bad mole (bomb) */
+.whack-hole.whack-bad {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+.whack-hole.whack-bomb-hit {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: var(--danger);
+    animation: whackShake 0.4s ease;
+}
+@keyframes whackShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+/* Hit effect */
+.whack-hole.whack-hit {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: var(--success);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+.whack-hole.whack-hit .whack-mole {
+    transform: scale(0.3) rotate(30deg);
+    opacity: 0;
+}
+.whack-start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.whack-start-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+@media (max-width: 480px) {
+    .whack-board { max-width: 280px; gap: 8px; }
+    .whack-hole { min-height: 70px; }
+    .whack-mole { font-size: 2rem; }
+}

@@ -1,0 +1,68 @@
+/* ===== Reaction Time ===== */
+.react-zone {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    gap: 12px;
+    padding: 40px 20px;
+}
+.react-msg {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+}
+.react-time {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+.react-idle {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+.react-waiting {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white;
+    animation: reactPulse 1.5s ease infinite;
+}
+@keyframes reactPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+.react-ready {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    animation: reactFlash 0.3s ease;
+}
+@keyframes reactFlash {
+    0% { transform: scale(0.97); }
+    100% { transform: scale(1); }
+}
+.react-early {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    color: white;
+}
+.react-result {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+.react-result .react-msg {
+    font-size: 3rem;
+}
+.react-results {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    min-height: 24px;
+}
+@media (max-width: 480px) {
+    .react-zone { min-height: 220px; padding: 30px 16px; }
+    .react-msg { font-size: 1.4rem; }
+    .react-result .react-msg { font-size: 2.2rem; }
+}

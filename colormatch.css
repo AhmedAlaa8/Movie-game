@@ -1,0 +1,38 @@
+/* ===== Color Match ===== */
+.color-display-card {
+    padding: 32px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+.color-question { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
+.color-display { font-size: 3rem; font-weight: 900; min-height: 60px; }
+.color-choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+.color-choice-btn {
+    padding: 16px;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+.color-choice-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
+.color-correct { background: rgba(16,185,129,0.2) !important; border-color: var(--success) !important; }
+.color-wrong { background: rgba(239,68,68,0.2) !important; border-color: var(--danger) !important; animation: shake 0.5s ease; }
+@media (max-width: 480px) {
+    .color-display { font-size: 2.2rem; }
+    .color-choices { grid-template-columns: 1fr; }
+    .color-display-card { padding: 20px; }
+}
